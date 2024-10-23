@@ -121,8 +121,21 @@ function App() {
               <ToggleButton onClick={toggleTheme}>
             Switch to {isDarkMode ? 'Light' : 'Dark'} Mode
           </ToggleButton>
-              <Dashboard />
-              <Workouts />
+
+
+
+          <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/workouts" element={<Workouts />} />
+                {/* <Route path="/tutorials" element={<Tutorials />} /> */}
+                {/* <Route path="/blogs" element={<Blogs />} /> */}
+                {/* <Route path="/contact" element={<Contact />} /> */}
+              </Routes>
+
+
+              {/* <Dashboard />
+              <Workouts /> */}
+
             </Container>
           )
         }
