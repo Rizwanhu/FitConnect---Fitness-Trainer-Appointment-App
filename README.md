@@ -49,7 +49,7 @@ Follow these steps to get your development environment running.
 
 Clone this repository to your local machine using the following command:
 
-```bash
+```
 git clone https://github.com/Rizwanhu/FitConnect--Fitness-Trainer-Appointment-App.git
 cd FitConnect--Fitness-Trainer-Appointment-App
 ```
@@ -59,8 +59,7 @@ cd FitConnect--Fitness-Trainer-Appointment-App
 ## 2. Install Backend Dependencies
 Navigate to the backend directory and install the necessary dependencies:
 
-```bash
-Copy code
+```
 cd backend
 npm install
 ```
@@ -70,8 +69,7 @@ npm install
 ## 3. Install Frontend Dependencies
 Navigate to the frontend directory and install the necessary dependencies:
 
-```bash
-Copy code
+```
 cd ../frontend
 npm install
 ```
@@ -82,16 +80,15 @@ npm install
 Create a .env file in the root directory for both the frontend and backend.
 
 Frontend Environment Variables (frontend/.env):
-```env
-Copy code
+```
 VITE_API_URL=http://localhost:5000/api
 ```
 
 ---
+
+# Backend Environment Variables (backend/.env):
+
 ```
-Backend Environment Variables (backend/.env):
-env
-Copy code
 MONGO_URI=mongodb://localhost:27017/fitconnect
 JWT_SECRET=your-jwt-secret
 PORT=5000
@@ -104,8 +101,6 @@ Note: Make sure to replace your-jwt-secret with your actual JWT secret key.
 Start the Backend (API Server)
 Navigate to the backend directory and run:
 ```
-bash
-Copy code
 cd backend
 npm run dev
 ```
@@ -116,8 +111,6 @@ This will start the backend server, typically on http://localhost:5000.
 ## Start the Frontend (React App)
 In a separate terminal, navigate to the frontend directory and run:
 ```
-bash
-Copy code
 cd frontend
 npm run dev
 ```
@@ -152,7 +145,6 @@ npm run start: Start the backend server in production mode.
 Here’s an overview of the project’s folder structure:
 
 ```plaintext
-Copy code
 /FitConnect--Fitness-Trainer-Appointment-App
   /backend          # Backend API (Node.js/Express)
     /controllers    # API request handlers
