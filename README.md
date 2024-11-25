@@ -52,71 +52,106 @@ Clone this repository to your local machine using the following command:
 ```bash
 git clone https://github.com/Rizwanhu/FitConnect--Fitness-Trainer-Appointment-App.git
 cd FitConnect--Fitness-Trainer-Appointment-App
-2. Install Backend Dependencies
+```
+
+---
+
+## 2. Install Backend Dependencies
 Navigate to the backend directory and install the necessary dependencies:
 
-bash
+```bash
 Copy code
 cd backend
 npm install
-3. Install Frontend Dependencies
+```
+
+---
+
+## 3. Install Frontend Dependencies
 Navigate to the frontend directory and install the necessary dependencies:
 
-bash
+```bash
 Copy code
 cd ../frontend
 npm install
-4. Set Up Environment Variables
+```
+
+---
+
+## 4. Set Up Environment Variables
 Create a .env file in the root directory for both the frontend and backend.
 
 Frontend Environment Variables (frontend/.env):
-env
+```env
 Copy code
 VITE_API_URL=http://localhost:5000/api
+```
+
+---
+```
 Backend Environment Variables (backend/.env):
 env
 Copy code
 MONGO_URI=mongodb://localhost:27017/fitconnect
 JWT_SECRET=your-jwt-secret
 PORT=5000
+```
 Note: Make sure to replace your-jwt-secret with your actual JWT secret key.
 
-5. Run the Project
+---
+
+## 5. Run the Project
 Start the Backend (API Server)
 Navigate to the backend directory and run:
-
+```
 bash
 Copy code
 cd backend
 npm run dev
+```
 This will start the backend server, typically on http://localhost:5000.
 
-Start the Frontend (React App)
-In a separate terminal, navigate to the frontend directory and run:
+---
 
+## Start the Frontend (React App)
+In a separate terminal, navigate to the frontend directory and run:
+```
 bash
 Copy code
 cd frontend
 npm run dev
+```
 This will start the frontend React app, typically on http://localhost:3000.
 
-🖥 Access the Application
+---
+
+## 🖥 Access the Application
 Once both the backend and frontend are running, open your browser and navigate to http://localhost:3000 to access the application.
 
-📝 Available Scripts
+---
+
+## 📝 Available Scripts
 In the frontend and backend directories, you can run the following commands:
 
-For Frontend (frontend directory):
+---
+
+## For Frontend (frontend directory):
 npm run dev: Start the React development server using Vite.
 npm run build: Build the project for production.
 npm run preview: Preview the built project.
-For Backend (backend directory):
+
+---
+
+## For Backend (backend directory):
 npm run dev: Start the backend server in development mode (using nodemon).
 npm run start: Start the backend server in production mode.
-📁 Folder Structure
+
+---
+
+## 📁 Folder Structure
 Here’s an overview of the project’s folder structure:
 
-plaintext
+```plaintext
 Copy code
 /FitConnect--Fitness-Trainer-Appointment-App
   /backend          # Backend API (Node.js/Express)
@@ -135,22 +170,36 @@ Copy code
       index.jsx     # Entry point for frontend
   .gitignore        # Git ignore file
   README.md         # This file
-💡 Notes
-JWT Authentication: The app uses JSON Web Tokens (JWT) for authenticating users. After logging in, users receive a token that they must include in the Authorization header for protected routes.
-MongoDB: The app is connected to a MongoDB database. Make sure to have MongoDB running locally or use a cloud service like MongoDB Atlas.
-Redux: State management is handled by Redux for seamless global state handling (e.g., authentication state, user data, etc.).
-🤝 Contributing
+```
+
+---
+
+## 💡 Notes
+# JWT Authentication: The app uses JSON Web Tokens (JWT) for authenticating users. After logging in, users receive a token that they must include in the Authorization header for protected routes.
+# MongoDB: The app is connected to a MongoDB database. Make sure to have MongoDB running locally or use a cloud service like MongoDB Atlas.
+# Redux: State management is handled by Redux for seamless global state handling (e.g., authentication state, user data, etc.).
+
+---
+
+## 🤝 Contributing
 We welcome contributions! If you have any suggestions, improvements, or bug fixes, feel free to fork this repository, create a pull request, and submit your changes.
 
-How to Contribute
+---
+
+## How to Contribute
 Fork the repository.
 Create a new branch for your feature or bug fix.
 Make your changes.
 Test your changes.
 Commit your changes and push them to your forked repository.
 Create a pull request with a clear description of your changes.
-📜 License
+
+---
+
+## 📜 License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-🎉 Happy Coding!
+---
+
+## 🎉 Happy Coding!
 
