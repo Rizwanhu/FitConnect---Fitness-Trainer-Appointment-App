@@ -103,9 +103,10 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import TextInput from "./TextInput";
 import Button from "./Button";
-// import { UserSignIn } from "../api";
-// import { useDispatch } from "react-redux";
-// import { loginSuccess } from "../redux/reducers/userSlice";
+import { UserSignIn } from "../api/index.js";
+import { useDispatch } from "react-redux";
+import { loginSuccess } from "../redux/reducers/userSlice";
+import { toast, ToastContainer } from 'react-toastify';
 
 const Container = styled.div`
   width: 100%;
@@ -126,43 +127,95 @@ const Span = styled.div`
 `;
 
 const SignIn = () => {
-  // const dispatch = useDispatch();
-  // const [loading, setLoading] = useState(false);
-  // const [buttonDisabled, setButtonDisabled] = useState(false);
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  // const validateInputs = () => {
-  //   if (!email || !password) {
-  //     alert("Please fill in all fields");
-  //     return false;
-  //   }
-  //   return true;
-  // };
+  const validateInputs = () => {
+    if (!email || !password) {
+      toast.error("Please fill in all fields", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });      
+      
+      setLoading(false);
+      setButtonDisabled(false);
+      
+      return false;
+    }
+    
+    setLoading(false);
+    setButtonDisabled(false);
+    
+    return true;
+  };
 
-  // const handelSignIn = async () => {
-  //   setLoading(true);
-  //   setButtonDisabled(true);
-  //   if (validateInputs()) {
-  //     await UserSignIn({ email, password })
-  //       .then((res) => {
-  //         dispatch(loginSuccess(res.data));
-  //         alert("Login Success");
-  //         setLoading(false);
-  //         setButtonDisabled(false);
-  //       })
-  //       .catch((err) => {
-  //         alert(err.response.data.message);
-  //         setLoading(false);
-  //         setButtonDisabled(false);
-  //       });
-  //   }
-  // };
+
+  const handelSignIn = async () => {
+    setLoading(true);
+    setButtonDisabled(true);
+    if (validateInputs()) {
+      toast.info("Signing in...", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      
+      await UserSignIn({ email, password })
+        .then((res) => {
+          console.log("Response:", res); // Log the response for debugging
+
+          dispatch(loginSuccess(res.data));
+          if (res && res.data) {
+            dispatch(loginSuccess(res.data));
+            toast.success("Login Success", {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          setLoading(false);
+          setButtonDisabled(false);
+        }
+        else {
+          throw new Error("Invalid response structure");
+        }
+        })
+      
+        .catch((err) => {
+          toast.error(err.response?.data?.message || "An error occurred", {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          setLoading(false);
+          setButtonDisabled(false);
+        });
+    }
+  };
 
   return (
     <Container>
       <div>
-        <Title>Welcome to Fittrack 👋</Title>
+        <Title>Welcome to FitConnect 👋</Title>
         <Span>Please login with your details here</Span>
       </div>
       <div
@@ -175,21 +228,21 @@ const SignIn = () => {
         <TextInput
           label="Email Address"
           placeholder="Enter your email address"
-          // value={email}
-          // handelChange={(e) => setEmail(e.target.value)}
+          value={email}
+          handelChange={(e) => setEmail(e.target.value)}
         />
         <TextInput
           label="Password"
           placeholder="Enter your password"
           password
-          // value={password}
-          // handelChange={(e) => setPassword(e.target.value)}
+          value={password}
+          handelChange={(e) => setPassword(e.target.value)}
         />
         <Button
           text="SignIn"
-          // onClick={handelSignIn}
-          // isLoading={loading}
-          // isDisabled={buttonDisabled}
+          onClick={handelSignIn}
+          isLoading={loading}
+          isDisabled={buttonDisabled}
         />
       </div>
     </Container>

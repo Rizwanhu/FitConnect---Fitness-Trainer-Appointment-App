@@ -4,7 +4,12 @@ import { FaUserAlt } from "react-icons/fa";
 import { FaLock } from "react-icons/fa6";
 import TextInput from "./TextInput";
 import Button from "./Button";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+import { UserSignUp } from "../api";
+import { useDispatch } from "react-redux";
+import { loginSuccess } from "../redux/reducers/userSlice";
 
 
 
@@ -64,9 +69,71 @@ width: 100%;
 
 
 const SignUp = () => {
+
+  
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const validateInputs = () => {
+    if (!name || !email || !password) {
+      toast.error("Please fill in all fields", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return false;
+    }
+    return true;
+  };
+
+  const handelSignUp = async () => {
+    setLoading(true);
+    setButtonDisabled(true);
+    if (validateInputs()) {
+      await UserSignUp({ name, email, password })
+        .then((res) => {
+          dispatch(loginSuccess(res.data));
+          toast.success("Account Created Successfully", {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          setLoading(false);
+          setButtonDisabled(false);
+        })
+        .catch((err) => {
+          toast.error(err.response.data.message, {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          setLoading(false);
+          setButtonDisabled(false);
+        });
+    }
+  };
+
+
   return (
 
     <Container>
+      {/* <ToastContainer /> */}
       <div>
         <Title>Create New Account 👋</Title>
         <Span>Please enter details to create a new account</Span>
@@ -81,27 +148,27 @@ const SignUp = () => {
         <TextInput
           label="Full name"
           placeholder="Enter your full name"
-          // value={name}
-          // handelChange={(e) => setName(e.target.value)}
+          value={name}
+          handelChange={(e) => setName(e.target.value)}
         />
         <TextInput
           label="Email Address"
           placeholder="Enter your email address"
-          // value={email}
-          // handelChange={(e) => setEmail(e.target.value)}
+          value={email}
+          handelChange={(e) => setEmail(e.target.value)}
         />
         <TextInput
           label="Password"
           placeholder="Enter your password"
           password
-          // value={password}
-          // handelChange={(e) => setPassword(e.target.value)}
+          value={password}
+          handelChange={(e) => setPassword(e.target.value)}
         />
         <Button
           text="SignUp"
-          // onClick={handelSignUp}
-          // isLoading={loading}
-          // isDisabled={buttonDisabled}
+          onClick={handelSignUp}
+          isLoading={loading}
+          isDisabled={buttonDisabled}
         />
       </div>
     </Container>

@@ -6,7 +6,8 @@ import WeeklyStatCard from "../components/cards/WeeklyStatCard";
 import CategoryChart from "../components/cards/CategoryChart";
 import AddWorkout from "../components/AddWorkout";
 import WorkoutCard from "../components/cards/WorkoutCard";
-// import { addWorkout, getDashboardDetails, getWorkouts } from "../api";
+import RandomQuote from "../components/Random Quote/RandomQuote.jsx";
+import { addWorkout, getDashboardDetails, getWorkouts } from "../api";
 
 const Container = styled.div`
   flex: 1;
@@ -64,10 +65,10 @@ const CardWrapper = styled.div`
 `;
 
 const Dashboard = () => {
-  // const [loading, setLoading] = useState(false);
-  // const [data, setData] = useState();
-  // const [buttonLoading, setButtonLoading] = useState(false);
-  // const [todaysWorkouts, setTodaysWorkouts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState();
+  const [buttonLoading, setButtonLoading] = useState(false);
+  const [todaysWorkouts, setTodaysWorkouts] = useState([]);
   const [workout, setWorkout] = useState(`#Legs
 -Back Squat
 -5 setsX15 reps
@@ -77,45 +78,42 @@ const Dashboard = () => {
 
 
 
-  // const dashboardData = async () => {
-  //   setLoading(true);
-  //   const token = localStorage.getItem("fittrack-app-token");
-  //   await getDashboardDetails(token).then((res) => {
-  //     setData(res.data);
-  //     console.log(res.data);
-  //     setLoading(false);
-  //   });
-  // };
-  // const getTodaysWorkout = async () => {
-  //   setLoading(true);
-  //   const token = localStorage.getItem("fittrack-app-token");
-  //   await getWorkouts(token, "").then((res) => {
-  //     setTodaysWorkouts(res?.data?.todaysWorkouts);
-  //     console.log(res.data);
-  //     setLoading(false);
-  //   });
-  // };
+  const dashboardData = async () => {
+    setLoading(true);
+    const token = localStorage.getItem("fittrack-app-token");
+    await getDashboardDetails(token).then((res) => {
+      setData(res.data);
+      console.log(res.data);
+      setLoading(false);
+    });
+  };
+  const getTodaysWorkout = async () => {
+    setLoading(true);
+    const token = localStorage.getItem("fittrack-app-token");
+    await getWorkouts(token, "").then((res) => {
+      setTodaysWorkouts(res?.data?.todaysWorkouts);
+      console.log(res.data);
+      setLoading(false);
+    });
+  };
 
-  // const addNewWorkout = async () => {
-  //   setButtonLoading(true);
-  //   const token = localStorage.getItem("fittrack-app-token");
-  //   await addWorkout(token, { workoutString: workout })
-  //     .then((res) => {
-  //       dashboardData();
-  //       getTodaysWorkout();
-  //       setButtonLoading(false);
-  //     })
-  //     .catch((err) => {
-  //       alert(err);
-  //     });
-  // };
-
-  // useEffect(() => {
-  //   dashboardData();
-  //   getTodaysWorkout();
-  // }, []);
+  const addNewWorkout = async () => {
+    setButtonLoading(true);
+    const token = localStorage.getItem("fittrack-app-token");
+    await addWorkout(token, { workoutString: workout })
+      .then((res) => {
+        dashboardData();
+        getTodaysWorkout();
+        setButtonLoading(false);
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  };
 
 
+  
+/*
   const data = {
     totalCaloriesBurnt: 13500,
     totalWorkouts: 6,
@@ -228,7 +226,14 @@ const Dashboard = () => {
       duration: 8
     }
   ]);
+  */
+
+
   
+  useEffect(() => {
+    dashboardData();
+    getTodaysWorkout();
+  }, []);
   
 
   return (
@@ -247,26 +252,23 @@ const Dashboard = () => {
           <AddWorkout
             workout={workout}
             setWorkout={setWorkout}
-            // addNewWorkout={addNewWorkout}
-            // buttonLoading={buttonLoading}
+            addNewWorkout={addNewWorkout}
+            buttonLoading={buttonLoading}
           />
         </FlexWrap>
 
 
 
-        {/* <Section>
+        <Section>
           <Title>Todays Workouts</Title>
-
-
           <CardWrapper>
             {todaysWorkouts.map((workout) => (
               <WorkoutCard workout={workout} />
             ))}
           </CardWrapper>
-
-
-        </Section> */}
-
+        </Section>
+        
+      <RandomQuote />
 
       </Wrapper>
     </Container>
