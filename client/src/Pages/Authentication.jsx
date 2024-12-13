@@ -221,7 +221,7 @@ const Authentication = () => {
     <Container>
       <Left>
         <Logo src={LogoImage} />
-        <Image src={AuthImage} />
+        <Image src={myImage} />
       </Left>
       <Right>
         {!login ? (

@@ -113,8 +113,21 @@ const SignUp = () => {
           setLoading(false);
           setButtonDisabled(false);
         })
+        // .catch((err) => {
+        //   toast.error(err.response.data.message, {
+        //     position: "top-center",
+        //     autoClose: 3000,
+        //     hideProgressBar: false,
+        //     closeOnClick: true,
+        //     pauseOnHover: true,
+        //     draggable: true,
+        //     progress: undefined,
+        //   });
         .catch((err) => {
-          toast.error(err.response.data.message, {
+          const errorMessage =
+            err?.response?.data?.message || "An unexpected error occurred";
+          
+          toast.error(errorMessage, {
             position: "top-center",
             autoClose: 3000,
             hideProgressBar: false,
@@ -123,6 +136,8 @@ const SignUp = () => {
             draggable: true,
             progress: undefined,
           });
+        // });
+        
           setLoading(false);
           setButtonDisabled(false);
         });

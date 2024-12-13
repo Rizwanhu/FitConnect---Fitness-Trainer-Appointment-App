@@ -70,6 +70,26 @@ import Contact from './Pages/Contact';
 // import Navbar from "./components/Navbar";
 // import Workouts from "./pages/Workouts";
 
+
+// ----- appointment 
+
+import HomePage from "./pages/HomePage";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+// import { useSelector } from "react-redux";
+import Spinner from "./components/Spinner";
+import ProtectedRoute from "./components/ProtectedRoute";
+import PublicRoute from "./components/PublicRoute";
+import ApplyDoctor from "./pages/ApplyDoctor";
+import NotificationPage from "./pages/NotificationPage";
+import Users from "./pages/admin/Users";
+import Doctors from "./pages/admin/Doctors";
+import Profile from "./pages/doctor/Profile";
+import BookingPage from "./pages/BookingPage";
+import Appointments from "./pages/Appointments";
+import DoctorAppointments from "./pages/doctor/DoctorAppointments";
+
+
 const Container = styled.div`
   width: 100%;
   height: 100vh;
@@ -168,9 +188,101 @@ Switch to {isDarkMode ? 'Light' : 'Dark'} Mode
 <Routes>
   <Route path="/dashboard" element={<Dashboard />} />
   <Route path="/workout" element={<Workouts />} />
-  <Route path="/tutorials" element={<Tutorials />} />
+  {/* <Route path="/tutorials" element={<Tutorials />} /> */}
   <Route path="/ai" element={<AI />} />
   <Route path="/contact" element={<Contact />} />
+
+  
+  <Route
+              path="/apply-doctor"
+              element={
+                // <ProtectedRoute>
+                  <ApplyDoctor />
+                // </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/users"
+              element={
+                // <ProtectedRoute>
+                  <Users />
+                // </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/doctors"
+              element={
+                // <ProtectedRoute>
+                  <Doctors />
+                // </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/doctor/profile/:id"
+              element={
+                // <ProtectedRoute>
+                  <Profile />
+                // </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/doctor/book-appointment/:doctorId"
+              element={
+                // <ProtectedRoute>
+                  <BookingPage />
+                // </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/notification"
+              element={
+                // <ProtectedRoute>
+                  <NotificationPage />
+                // </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <PublicRoute>
+                  <Login />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <PublicRoute>
+                  <Register />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/appointments"
+              element={
+                // <ProtectedRoute>
+                  <Appointments />
+                // </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/doctor-appointments"
+              element={
+                // <ProtectedRoute>
+                  <DoctorAppointments />
+                // </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/"
+              element={
+                // <ProtectedRoute>
+                  <HomePage />
+                // </ProtectedRoute>
+              }
+            />
+
+
 </Routes>
 
 

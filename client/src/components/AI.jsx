@@ -136,9 +136,13 @@ const AI = () => {
           progress: undefined,
       });
         try {
+          
+          const apiUrl = import.meta.env.VITE_API_URL; // Base URL from .env
+          const apiKey = import.meta.env.VITE_API_KEY; // API Key from .env
+          
             const response = await axios({
-                url: "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyCj9q8kHSubuSKwakK0RhtG8KZ0xfYHBX4",
-                method: "post",
+              url: `${apiUrl}?key=${apiKey}`,
+              method: "post",
                 data: {
                     contents: [
                         {

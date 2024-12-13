@@ -143,8 +143,8 @@ const Dashboard = () => {
 
 
 
-
-  const [todaysWorkouts, setTodaysWorkouts] = useState([
+*/
+  const [TTodaysWorkouts, SSetTodaysWorkouts] = useState([
     {
       category: "Legs",
       workoutName: "Back Squat",
@@ -224,9 +224,57 @@ const Dashboard = () => {
       reps: 20,
       weight: 10,
       duration: 8
-    }
+    },
+
+    { category: "Back", workoutName: "Pull-ups", sets: 4, reps: 10, weight: 0, duration: 10 },
+    { category: "Back", workoutName: "Lat Pulldown", sets: 4, reps: 12, weight: 45, duration: 10 },
+    { category: "Back", workoutName: "Bent-over Row", sets: 4, reps: 12, weight: 40, duration: 10 },
+    { category: "Back", workoutName: "T-bar Row", sets: 3, reps: 10, weight: 50, duration: 12 },
+    { category: "Back", workoutName: "Barbell Row", sets: 4, reps: 10, weight: 60, duration: 10 },
+    { category: "Back", workoutName: "Seated Cable Row", sets: 4, reps: 12, weight: 45, duration: 10 },
+
+
+    { category: "Shoulders", workoutName: "Lateral Raise", sets: 4, reps: 15, weight: 12, duration: 8 },
+    { category: "Shoulders", workoutName: "Front Raise", sets: 4, reps: 12, weight: 10, duration: 8 },
+    { category: "Shoulders", workoutName: "Arnold Press", sets: 3, reps: 12, weight: 30, duration: 10 },
+    { category: "Shoulders", workoutName: "Upright Row", sets: 4, reps: 12, weight: 25, duration: 10 },
+    { category: "Shoulders", workoutName: "Shrugs", sets: 4, reps: 20, weight: 50, duration: 8 },
+    { category: "Shoulders", workoutName: "Machine Shoulder Press", sets: 4, reps: 10, weight: 40, duration: 10 },
+
+    
+
+    { category: "Arms", workoutName: "Tricep Dips", sets: 4, reps: 12, weight: 0, duration: 10 },
+    { category: "Arms", workoutName: "Hammer Curl", sets: 4, reps: 15, weight: 12, duration: 8 },
+    { category: "Arms", workoutName: "Preacher Curl", sets: 4, reps: 12, weight: 25, duration: 8 },
+    { category: "Arms", workoutName: "Tricep Pushdown", sets: 4, reps: 12, weight: 20, duration: 8 },
+    { category: "Arms", workoutName: "Concentration Curl", sets: 4, reps: 15, weight: 10, duration: 6 },
+    { category: "Arms", workoutName: "Overhead Tricep Extension", sets: 3, reps: 12, weight: 20, duration: 8 },
+    { category: "Arms", workoutName: "Barbell Curl", sets: 4, reps: 10, weight: 30, duration: 8 },
+
+    
+    { category: "Core", workoutName: "Russian Twists", sets: 3, reps: 20, weight: 10, duration: 8 },
+    { category: "Core", workoutName: "Leg Raises", sets: 4, reps: 15, weight: 0, duration: 8 },
+    { category: "Core", workoutName: "Bicycle Crunches", sets: 4, reps: 20, weight: 0, duration: 8 },
+    { category: "Core", workoutName: "Mountain Climbers", sets: 4, reps: 30, weight: 0, duration: 10 },
+    { category: "Core", workoutName: "Sit-ups", sets: 4, reps: 20, weight: 0, duration: 10 },
+    { category: "Core", workoutName: "Flutter Kicks", sets: 4, reps: 20, weight: 0, duration: 8 },
+    { category: "Core", workoutName: "V-ups", sets: 3, reps: 15, weight: 0, duration: 8 },
+    { category: "Core", workoutName: "Side Plank", sets: 3, reps: 1, weight: 0, duration: 30 },
+
+    
+    { category: "Cardio", workoutName: "Cycling", sets: 1, reps: 1, weight: 0, duration: 30 },
+    { category: "Cardio", workoutName: "Jump Rope", sets: 4, reps: 100, weight: 0, duration: 15 },
+    { category: "Cardio", workoutName: "Rowing", sets: 1, reps: 1, weight: 0, duration: 20 },
+    { category: "Cardio", workoutName: "Burpees", sets: 4, reps: 15, weight: 0, duration: 10 },
+    { category: "Cardio", workoutName: "Swimming", sets: 1, reps: 1, weight: 0, duration: 30 },
+    { category: "Cardio", workoutName: "HIIT", sets: 1, reps: 1, weight: 0, duration: 15 },
+    { category: "Cardio", workoutName: "Stair Climber", sets: 1, reps: 1, weight: 0, duration: 25 },
+
+    
+    
+    
   ]);
-  */
+  
 
 
   
@@ -242,7 +290,7 @@ const Dashboard = () => {
         <Title>Dashboard</Title>
         <FlexWrap>
           {counts.map((item) => (
-            <CountsCard item={item}  />
+            <CountsCard item={item} data={data}  />
           ))}
         </FlexWrap>
 
@@ -269,6 +317,16 @@ const Dashboard = () => {
         </Section>
         
       <RandomQuote />
+
+        
+        <Section>
+          <Title>Workouts You Might Like</Title>
+          <CardWrapper>
+        {TTodaysWorkouts.map((workout, index) => (
+          <WorkoutCard key={index} workout={workout} />
+        ))}
+          </CardWrapper>
+          </Section>
 
       </Wrapper>
     </Container>
